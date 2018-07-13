@@ -526,6 +526,7 @@ public class firefly {
 		mainframe.getContentPane().add(panel3,c);
 		//extra label on top so rest of them show
 		extra = new JLabel("");
+		gbc_panel3.anchor=GridBagConstraints.NORTHWEST;
 		gbc_panel3.gridx=0;
 		gbc_panel3.gridy=0;
 		gbc_panel3.weightx=0.5;
