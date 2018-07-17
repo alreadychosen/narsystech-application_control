@@ -47,6 +47,8 @@ public class JavaApplicationControl {
 	private JButton permeability;
 	private JButton ppm;
 	private JButton btn_Forecasts;
+	private JLabel one;
+	private JLabel two;
 	
 	
 	
@@ -481,7 +483,7 @@ public class JavaApplicationControl {
 		
 		
 		//third panel
-		panel3= new JPanel();
+		panel3= new JPanel(new GridBagLayout());
 		panel3.setBackground(Color.RED); 
 		GridBagConstraints gbc_panel3 = new GridBagConstraints();
 		// below comments are reference to useful programming statements
@@ -489,16 +491,31 @@ public class JavaApplicationControl {
 		//gbc_lblNewLabel.anchor=GridBagConstraints.FIRST_LINE_START;
 		//gbc_lblNewLabel.fill = GridBagConstraints.BOTH;
 		//c.anchor=GridBagConstraints.BASELINE;
-		c.anchor=GridBagConstraints.CENTER;
+		c.fill= GridBagConstraints.HORIZONTAL;
 		c.weightx=0.5;
 		c.weighty=0.5;
 		c.gridheight=4;
 		c.gridwidth=5;
 		c.gridx = 0;
 		c.gridy = 2;
-		c.fill=GridBagConstraints.HORIZONTAL;
+		c.anchor=GridBagConstraints.NORTH;
 		//c.insets= new Insets(0,0,125,0);
 		mainframe.getContentPane().add(panel3,c);
+		//jlabel test
+		one = new JLabel("hello");
+		gbc_panel3.gridx=0;
+		gbc_panel3.gridy=0;
+		gbc_panel3.weightx=0.5;
+		gbc_panel3.weighty=0.5;
+		panel3.add(one,gbc_panel3);
+		//
+		two= new JLabel("world");
+		gbc_panel3.gridx=1;
+		gbc_panel3.gridy=1;
+		gbc_panel3.weightx=.5;
+		gbc_panel3.weighty=.5;
+		panel3.add(two,gbc_panel3);
+		
 		
 		
 		

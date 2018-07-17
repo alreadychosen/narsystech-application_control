@@ -6,11 +6,12 @@
 import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -19,7 +20,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
-import javax.swing.border.LineBorder;
 
 public class firefly2 {
 	
@@ -115,7 +115,7 @@ public class firefly2 {
         //mainframe = new JFrame();
 		mainframe.getContentPane().setBackground(new Color(176, 196, 222));
 		mainframe.setTitle("NarSysTech Java Server");
-		mainframe.setBounds(100, 100, 715, 760);
+		//mainframe.setBounds(100, 100, 715, 760);
 		mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0};
@@ -127,20 +127,33 @@ public class firefly2 {
 		/*-------------------------------------------------------------------------------------------------------------------------------
 		 * Top Description
 		 -------------------------------------------------------------------------------------------------------------------------------*/
-		//lbl_Description = new JLabel("<html>This graphical user interface is used to demonstrate the NarSysTech Python<br/>API. The controls read and write to a running version of the NarSysTech<br/>Software interogating and interacting with the currently open project. A project<br/>must be constructed, open and the python server started before the controls<br/>can be built and tested.<html>");
 		lbl_Description = new JLabel("<html>This graphical user interface is used to demonstrate the NarSysTech Python API. The controls read and write to a running version of the NarSysTech Software interogating and interacting with the currently open project. A project must be constructed, open and the python server started before the controls can be built and tested.<html>");
-		lbl_Description.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+		GridBagConstraints c = new GridBagConstraints();
+		c.anchor=GridBagConstraints.PAGE_START;
+		c.anchor=GridBagConstraints.FIRST_LINE_START;
+		c.gridx = 1;
+		c.gridy = 0;
+		c.gridwidth=GridBagConstraints.REMAINDER;
+		c.fill=GridBagConstraints.HORIZONTAL;
+		c.gridheight=1;
+		c.insets = new Insets(10, 10, 0, 10);
+		c.weightx=0.5;
+		c.weighty=0.5;
+		mainframe.getContentPane().add(lbl_Description, c);
+		//lbl_Description = new JLabel("<html>This graphical user interface is used to demonstrate the NarSysTech Python<br/>API. The controls read and write to a running version of the NarSysTech<br/>Software interogating and interacting with the currently open project. A project<br/>must be constructed, open and the python server started before the controls<br/>can be built and tested.<html>");
+		/*lbl_Description = new JLabel("<html>This graphical user interface is used to demonstrate the NarSysTech Python API. The controls read and write to a running version of the NarSysTech Software interogating and interacting with the currently open project. A project must be constructed, open and the python server started before the controls can be built and tested.<html>");
+		lbl_Description.setFont(new Font("Times New Roman", Font.PLAIN, 19));*/
 		/*
 		GridBagConstraints gbc_lblDescription = new GridBagConstraints();
 		gbc_lblDescription.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblDescription.anchor = GridBagConstraints.NORTHWEST;
 		*/
-		panel_Description = new JPanel(new GridBagLayout());
+		/*panel_Description = new JPanel(new GridBagLayout());
 		panel_Description.setBackground(new Color(176, 196, 222));
-		panel_Description.add(lbl_Description/*, gbc_lblDescription*/);
-		lbl_Description.setMinimumSize(new Dimension(500,140));
+		panel_Description.add(lbl_Description);
+		//lbl_Description.setMinimumSize(new Dimension(500,140));*/
 		
-		GridBagConstraints gbc_lblDescription = new GridBagConstraints();
+		/*GridBagConstraints gbc_lblDescription = new GridBagConstraints();
 		gbc_lblDescription.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblDescription.anchor = GridBagConstraints.NORTHWEST;
 		gbc_lblDescription.insets = new Insets(0, 50, 5, 40);
@@ -155,10 +168,10 @@ public class firefly2 {
 		lbl_Description.setMinimumSize(new Dimension(300,120));
 		lbl_Description.setPreferredSize(new Dimension(600,120));
 		lbl_Description.setMaximumSize(new Dimension(700,120));
-		mainframe.getContentPane().add(panel_Description, gbc_lblDescription);
+		mainframe.getContentPane().add(panel_Description, gbc_lblDescription);*/
 		
 		
-		GridBagConstraints c = new GridBagConstraints();
+		//GridBagConstraints c = new GridBagConstraints();
 		
         if (shouldFill) {
             //natural height, maximum width
@@ -187,6 +200,9 @@ public class firefly2 {
 		c.fill=GridBagConstraints.HORIZONTAL;
 		mainframe.getContentPane().add(panel_ServerControls,c);
 		
+		/*/////////////////////////////////////////////
+		 * Server Controls
+		 /////////////////////////////////////////////*/
 		lbl_ServerControls= new JLabel("Server Controls");
 		gbc_ServerControls.gridx = 0;
 		gbc_ServerControls.gridy = 0;
@@ -395,20 +411,12 @@ public class firefly2 {
 		panel_Controls.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panel_Controls.setBackground(new Color(240,255,240)); 
 		gbc_Controls = new GridBagConstraints();
-		/*
-		 *  below comments are reference to useful programming statements
-		 *  //gbc_lblNewLabel.insets = new Insets(10, 10, 0, 10);
-		 *	//gbc_lblNewLabel.anchor=GridBagConstraints.FIRST_LINE_START;
-		 *	//gbc_lblNewLabel.fill = GridBagConstraints.BOTH;
-		 *	//c.anchor=GridBagConstraints.CENTER;
-		 */
 		c.weightx=0.5;
 		c.weighty=0.5;
 		c.gridheight=1;
 		c.gridwidth=5;
 		c.gridx = 0;
 		c.gridy = 2;
-		//c.insets= new Insets(0,0,210,0);
 		c.fill=GridBagConstraints.BOTH;
 		mainframe.getContentPane().add(panel_Controls,c);
 		
@@ -426,8 +434,6 @@ public class firefly2 {
 		gbc_Controls.weightx=0.5;
 		gbc_Controls.weighty=0.5;
 		gbc_Controls.insets = new Insets(5, 10, 0, 0);
-		//gbc_Controls.anchor=GridBagConstraints.WEST;
-		//gbc_Controls.insets = new Insets(0, 0, 0, 220);
 		panel_Controls.add(lbl_Controls, gbc_Controls);
 		
 		gbc_Controls.insets = new Insets(0, 0, 0, 0);
@@ -473,7 +479,7 @@ public class firefly2 {
 		panel_Controls.add(lbl_ConstructProject, gbc_Controls);
 		
 		btn_Projects = new JButton("Projects");
-		btn_Projects.setToolTipText("<html>Define new projects, edit existing<br/>projects and control which<br/>projects are opena and therefore<br/>accessible. When a connection to<br/>a server is initially made, the<br/>project is automatically set to<br/>whatever project is currently<br/>open on the server side.<html>");
+		btn_Projects.setToolTipText("<html>Define new projects, edit existing<br/>projects and control which<br/>projects are open and therefore<br/>accessible. When a connection to<br/>a server is initially made, the<br/>project is automatically set to<br/>whatever project is currently<br/>open on the server side.<html>");
 		btn_Projects.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_Projects.setBackground(new Color(255, 235, 245));
 		gbc_Controls.fill = GridBagConstraints.BOTH;
@@ -562,6 +568,7 @@ public class firefly2 {
 		gbc_Forecasts.insets = new Insets(5, 71, 5, 5);
 		panel_Controls.add(lbl_Forecasts, gbc_Forecasts);
 		
+		// PPM button
 		btn_PPM = new JButton("PPM");
 		btn_PPM.setToolTipText("<html>Define how properties and<br/>compute the production<br/>potential model.<html>");
 		btn_PPM.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -574,7 +581,7 @@ public class firefly2 {
 		panel_Controls.add(btn_PPM, gbc_Forecasts);
 		
 		btn_Forecasts = new JButton("Forecasts");
-		btn_Forecasts.setToolTipText("<html>Read slices of data from data<br/>volumes contained in a project<br/>and review in 2D window. This<br/>will include the PPM volumes<br/>which can also be accessed vai<br/>the PPM Controls.<html>");
+		btn_Forecasts.setToolTipText("<html>Read slices of data from data<br/>volumes contained in a project<br/>and review in 2D window. This<br/>will include the PPM volumes<br/>which can also be accessed via<br/>the PPM Controls.<html>");
 		btn_Forecasts.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		gbc_Forecasts.fill = GridBagConstraints.BOTH;
 		gbc_Forecasts.anchor=GridBagConstraints.LINE_START;
@@ -656,9 +663,144 @@ public class firefly2 {
 		gbc_Status.insets = new Insets(0,90,10,10);
 		panel_Status.add(lbl_VolumeValue,gbc_Status);
 		
+		/*
+		 * add functionality for connect button in Server Controls panel
+		 */
+		btn_Connect.addActionListener(new ActionListener() {
+			JFrame failed;
+	    	GridBagLayout gridBagLayout3;
+	    	JPanel filler;
+	    	GridBagConstraints gbc2;
+	    	JLabel lbl_Failed;
+	    	JButton btn_Okay;
+		    public void actionPerformed(ActionEvent e)
+		    {
+		    	failed= new JFrame("Connection Failed");
+	    		gridBagLayout3= new GridBagLayout();
+	    		failed.getContentPane().setLayout(gridBagLayout3);
+	    		failed.getContentPane().setBackground(new Color(152,251,152));
+	    		failed.setVisible(true);
+	    		failed.setSize(500,150);
+	    		gbc2= new GridBagConstraints();
+	    		/*
+	    		 * lbl error
+	    		 */
+	    		lbl_Failed = new JLabel("<html><br/>Gateway established, but unable to access project.<br/><br/> Exception=An error occured while trying to connect to the Java server (127.0.0.1:25322)<br/><br/><html>");
+	    		gbc2.gridx=0;
+	    		gbc2.gridy=0; 
+	    		//gbc.weightx=0.5;
+	    		//gbc.weighty=0.5;
+	    		gbc2.anchor=GridBagConstraints.NORTHEAST;
+	    		lbl_Failed.setFont(new Font("Times New Roman", Font.BOLD, 13));
+	    		failed.add(lbl_Failed, gbc2);
+	    		/*okay button
+	    		 * 
+	    		 */
+	    		btn_Okay=new JButton("Okay");
+	    		btn_Okay.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+	    		gbc2.gridx=0;
+	    		gbc2.gridy=1;
+	    		//gbc.weightx=0.5;
+	    		//gbc.weighty=0.5;
+	    		gbc2.anchor=GridBagConstraints.NORTH;
+	    		//gbc.insets= new Insets(0,0,1000,0);
+	    		failed.add(btn_Okay, gbc2);
+	    		btn_Okay.addActionListener(new ActionListener() {
+	    		    public void actionPerformed(ActionEvent e)
+	    		    {
+	    		    	failed.dispose();
+	    		    }
+	    		});
+	    		/*filler panel to force components in the right place
+	    		 * 
+	    		 */
+	    		gbc2.gridx=1;
+	    		gbc2.gridy=2;
+	    		gbc2.weightx=0;
+	    		gbc2.weighty=1;
+	    		filler= new JPanel();
+	    		filler.setOpaque(false);
+	    		failed.add(filler,gbc2);
+		    }
+		    
+		});
 		
-    }
 
+		/*
+		 * add functionality for buttons in control panel
+		 */
+		btn_LogMessages.addActionListener(new control_Buttons());
+		btn_Projects.addActionListener(new control_Buttons());
+		btn_Data.addActionListener(new control_Buttons());
+		btn_Production.addActionListener(new control_Buttons());
+		btn_Reservoir.addActionListener(new control_Buttons());
+		btn_Permeability.addActionListener(new control_Buttons());
+		btn_PPM.addActionListener(new control_Buttons());
+		btn_Forecasts.addActionListener(new control_Buttons());
+    }
+   
+    /*
+     * Actions when clicked on buttons in control panel
+     */
+    static class control_Buttons implements ActionListener{
+    	JFrame error;
+    	GridBagLayout gridBagLayout2;
+    	JPanel filler;
+    	GridBagConstraints gbc;
+    	JLabel lbl_error;
+    	JButton btn_Okay;
+    	public void actionPerformed (ActionEvent e) {
+    		error= new JFrame("Connection Error");
+    		gridBagLayout2= new GridBagLayout();
+    		error.getContentPane().setLayout(gridBagLayout2);
+    		error.getContentPane().setBackground(new Color(240,128,128));
+    		error.setVisible(true);
+    		error.setSize(500,150);
+    		gbc= new GridBagConstraints();
+    		/*
+    		 * lbl error
+    		 */
+    		lbl_error = new JLabel("<html><br/>Must establish connection to Java application first<br/><br/><html>");
+    		gbc.gridx=0;
+    		gbc.gridy=0;
+    		//gbc.weightx=0.5;
+    		//gbc.weighty=0.5;
+    		gbc.anchor=GridBagConstraints.NORTH;
+    		gbc.anchor=GridBagConstraints.CENTER;
+    		lbl_error.setFont(new Font("Times New Roman", Font.BOLD, 13));
+    		error.add(lbl_error, gbc);
+    		/*okay button
+    		 * 
+    		 */
+    		btn_Okay=new JButton("Okay");
+    		btn_Okay.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+    		gbc.gridx=0;
+    		gbc.gridy=1;
+    		//gbc.weightx=0.5;
+    		//gbc.weighty=0.5;
+    		gbc.anchor=GridBagConstraints.NORTH;
+    		//gbc.insets= new Insets(0,0,1000,0);
+    		btn_Okay.addActionListener(new ActionListener() {
+    		    public void actionPerformed(ActionEvent e)
+    		    {
+    		       error.dispose();
+    		    }
+    		});
+    		error.add(btn_Okay,gbc);
+    		/*filler panel to force components in the right place
+    		 * 
+    		 */
+    		gbc.gridx=1;
+    		gbc.gridy=2;
+    		gbc.weightx=0;
+    		gbc.weighty=1;
+    		filler= new JPanel();
+    		filler.setOpaque(false);
+    		error.add(filler,gbc);
+    	}
+    	
+    }
+    
     
     /*-------------------------------------------------------------------------------------------------------------------------------
 	 * End of code/rest of it
