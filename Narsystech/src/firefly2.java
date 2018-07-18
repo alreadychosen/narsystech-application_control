@@ -6,6 +6,7 @@
 import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -13,6 +14,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -20,6 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
+
 
 public class firefly2 {
 	
@@ -60,6 +63,11 @@ public class firefly2 {
      * Controls Panel
      */
     private static JPanel panel_Controls;
+    private static JPanel sub1=new JPanel();
+    private static JPanel sub2=new JPanel();
+    private static JPanel sub3=new JPanel();
+    private static JPanel sub4=new JPanel();
+    private static JPanel sub5=new JPanel();
 	private static JLabel lbl_Controls;
 	private static GridBagConstraints gbc_Controls;
 	//
@@ -103,14 +111,34 @@ public class firefly2 {
 	private static JLabel lbl_Volume;
 	private static JLabel lbl_VolumeValue;
 	
+	/*
+	 * creates sub panels for  control panel
+	 */
+	public  static void sub_Panel( JPanel pan, GridBagLayout L, GridBagConstraints cons, int y ) {
+		pan.setLayout(new GridBagLayout());
+		pan.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		pan.setBackground(new Color(240,255,240));
+		pan.setBorder(BorderFactory.createEtchedBorder(Color.BLACK,Color.BLACK));
+		cons.weightx=0.5;
+		cons.weighty=0.5;
+		cons.gridheight=1;
+		cons.gridwidth=2;
+		cons.fill=GridBagConstraints.HORIZONTAL;
+		cons.gridx=0;
+		cons.gridy=y;
+		panel_Controls.add(pan,cons);
+	}
+	
 	
 	/*-------------------------------------------------------------------------------------------------------------------------------
 	 * beginning of code
 	 -------------------------------------------------------------------------------------------------------------------------------*/
-    public static void addComponentsToPane(Container pane) {
+	
+	public static void addComponentsToPane(Container pane) {
         if (RIGHT_TO_LEFT) {
             pane.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         }
+        
 
         //mainframe = new JFrame();
 		mainframe.getContentPane().setBackground(new Color(176, 196, 222));
@@ -122,13 +150,15 @@ public class firefly2 {
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 591};
 		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 1.0, Double.MIN_VALUE};
+		GridBagConstraints c = new GridBagConstraints();
+		c.fill = GridBagConstraints.HORIZONTAL;
 		mainframe.getContentPane().setLayout(gridBagLayout);
 		
 		/*-------------------------------------------------------------------------------------------------------------------------------
 		 * Top Description
 		 -------------------------------------------------------------------------------------------------------------------------------*/
 		lbl_Description = new JLabel("<html>This graphical user interface is used to demonstrate the NarSysTech Python API. The controls read and write to a running version of the NarSysTech Software interogating and interacting with the currently open project. A project must be constructed, open and the python server started before the controls can be built and tested.<html>");
-		GridBagConstraints c = new GridBagConstraints();
+		//GridBagConstraints c = new GridBagConstraints();
 		c.anchor=GridBagConstraints.PAGE_START;
 		c.anchor=GridBagConstraints.FIRST_LINE_START;
 		c.gridx = 1;
@@ -407,6 +437,12 @@ public class firefly2 {
 		 * 
 		 * Controls region for Infrastructure, Project, Production, Reservoir, Forecasts
 		 -------------------------------------------------------------------------------------------------------------------------------*/
+		
+
+
+		//add_Panel( JPanel pan, GridBagConstraints cons, int x, int y )
+		//for (int i=0; i<)
+		//sub_Panel( JPanel pan, GridBagConstraints cons ) 
 		panel_Controls= new JPanel(new GridBagLayout());
 		panel_Controls.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panel_Controls.setBackground(new Color(240,255,240)); 
@@ -417,8 +453,21 @@ public class firefly2 {
 		c.gridwidth=5;
 		c.gridx = 0;
 		c.gridy = 2;
-		c.fill=GridBagConstraints.BOTH;
+		c.fill=GridBagConstraints.HORIZONTAL;
 		mainframe.getContentPane().add(panel_Controls,c);
+
+		/*
+		 * add sub panels
+		 */
+		sub_Panel(sub1, gridBagLayout, gbc_Controls, 1);
+		sub_Panel(sub2, gridBagLayout, gbc_Controls, 2);
+		sub_Panel(sub3, gridBagLayout, gbc_Controls, 3);
+		sub_Panel(sub4, gridBagLayout, gbc_Controls, 4);
+		sub_Panel(sub5, gridBagLayout, gbc_Controls, 5);
+		
+
+		
+		
 		
 		/*
 		 * Controls label
@@ -427,7 +476,7 @@ public class firefly2 {
 		lbl_Controls.setFont(new Font("Times New Roman", Font.BOLD, 18)); 
 		gbc_Controls.gridx = 0;
 		gbc_Controls.gridy = 0;
-		gbc_Controls.fill = GridBagConstraints.BOTH;
+		gbc_Controls.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Controls.anchor = GridBagConstraints.NORTHWEST;
 		gbc_Controls.gridheight=1;
 		gbc_Controls.gridwidth=1;
@@ -435,7 +484,6 @@ public class firefly2 {
 		gbc_Controls.weighty=0.5;
 		gbc_Controls.insets = new Insets(5, 10, 0, 0);
 		panel_Controls.add(lbl_Controls, gbc_Controls);
-		
 		gbc_Controls.insets = new Insets(0, 0, 0, 0);
 		
 		
@@ -450,19 +498,19 @@ public class firefly2 {
 		gbc_Controls.gridx = 0;
 		gbc_Controls.gridy = 1;
 		gbc_Controls.insets = new Insets(5,44,5,5); 
-		panel_Controls.add(lbl_Infrastructure, gbc_Controls);
+		sub1.add(lbl_Infrastructure, gbc_Controls);
 		
 		btn_LogMessages = new JButton("Log Messages");
 		btn_LogMessages.setToolTipText("<html>Access all server logs and test. It<br/>is important to note that the<br/>server and client-side should use<br/>the same logging system to allow<br/>efficient troubleshooting.<html>");
 		btn_LogMessages.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_LogMessages.setBackground(new Color(180, 255, 255));
-		gbc_Controls.fill = GridBagConstraints.BOTH;
+		gbc_Controls.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Controls.anchor=GridBagConstraints.LINE_START;
 		gbc_Controls.gridx = 0;
 		gbc_Controls.gridy = 1;
 		gbc_Controls.ipady = 5;
 		gbc_Controls.insets = new Insets(5,145,5,5);
-		panel_Controls.add(btn_LogMessages, gbc_Controls);
+		sub1.add(btn_LogMessages, gbc_Controls);
 		
 		
 		/*/////////////////////////////////////////////
@@ -476,18 +524,18 @@ public class firefly2 {
 		gbc_Controls.gridx = 0;
 		gbc_Controls.gridy = 2;
 		gbc_Controls.insets = new Insets(5, 23, 5, 5);
-		panel_Controls.add(lbl_ConstructProject, gbc_Controls);
+		sub2.add(lbl_ConstructProject, gbc_Controls);
 		
 		btn_Projects = new JButton("Projects");
 		btn_Projects.setToolTipText("<html>Define new projects, edit existing<br/>projects and control which<br/>projects are open and therefore<br/>accessible. When a connection to<br/>a server is initially made, the<br/>project is automatically set to<br/>whatever project is currently<br/>open on the server side.<html>");
 		btn_Projects.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_Projects.setBackground(new Color(255, 235, 245));
-		gbc_Controls.fill = GridBagConstraints.BOTH;
+		gbc_Controls.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Controls.anchor=GridBagConstraints.LINE_START;
 		gbc_Controls.gridx = 0;
 		gbc_Controls.gridy = 2;
 		gbc_Controls.insets = new Insets(5, 145, 5, 5);
-		panel_Controls.add(btn_Projects, gbc_Controls);
+		sub2.add(btn_Projects, gbc_Controls);
 		
 		btn_Data = new JButton("Data");
 		btn_Data.setToolTipText("<html>Load, review and edit all the<br/>various data types needed to<br/>build and update a Production<br/>Potential Model.<html>");
@@ -495,7 +543,7 @@ public class firefly2 {
 		btn_Data.setBackground(new Color(255, 213, 227));
 		gbc_Controls.gridx = 1;
 		gbc_Controls.insets = new Insets(5, 5, 5, 5);
-		panel_Controls.add(btn_Data, gbc_Controls);
+		sub2.add(btn_Data, gbc_Controls);
 		
 		
 		/*/////////////////////////////////////////////
@@ -509,17 +557,17 @@ public class firefly2 {
 		gbc_Controls.gridx = 0;
 		gbc_Controls.gridy = 3;
 		gbc_Controls.insets = new Insets(5, 20, 5, 5);
-		panel_Controls.add(lbl_DefineProduction, gbc_Controls);
+		sub3.add(lbl_DefineProduction, gbc_Controls);
 		
 		btn_Production = new JButton("Production");
 		btn_Production.setToolTipText("<html>Load, review, edit and delete<br/>production related information<br/>that is used to compute drainage<br/>and assign production to each<br/>well.<html>");
 		btn_Production.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_Production.setBackground(new Color(152, 251, 152));
-		gbc_Controls.fill = GridBagConstraints.BOTH;
+		gbc_Controls.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Controls.anchor=GridBagConstraints.LINE_START;
 		gbc_Controls.gridx = 0;
 		gbc_Controls.insets = new Insets(5, 145, 5, 5);
-		panel_Controls.add(btn_Production, gbc_Controls);
+		sub3.add(btn_Production, gbc_Controls);
 		
 		
 		/*/////////////////////////////////////////////
@@ -533,18 +581,18 @@ public class firefly2 {
 		gbc_Controls.gridx = 0;
 		gbc_Controls.gridy = 4;
 		gbc_Controls.insets = new Insets(5, 27, 5, 5);
-		panel_Controls.add(lbl_DefineReservoir, gbc_Controls);
+		sub4.add(lbl_DefineReservoir, gbc_Controls);
 		
 		btn_Reservoir = new JButton("Reservoir");
 		btn_Reservoir.setToolTipText("<html>Define the bounds of the<br/>reservoir.<html>");
 		btn_Reservoir.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_Reservoir.setBackground(new Color(255, 218, 185));
-		gbc_Controls.fill = GridBagConstraints.BOTH;
+		gbc_Controls.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Controls.anchor=GridBagConstraints.LINE_START;
 		gbc_Controls.gridx = 0;
 		gbc_Controls.gridy = 4;
 		gbc_Controls.insets = new Insets(5, 145, 5, 5);
-		panel_Controls.add(btn_Reservoir, gbc_Controls);
+		sub4.add(btn_Reservoir, gbc_Controls);
 		
 		btn_Permeability = new JButton("Permeability");
 		btn_Permeability.setToolTipText("<html>Define how permeabilities are<br/>distributed within the reservoir<br/>and how the native<br/>permeabilities are impacted by<br/>wells and stimulations and<br/>associated data sets like DFN's<html>");
@@ -552,43 +600,43 @@ public class firefly2 {
 		btn_Permeability.setBackground(new Color(255, 246, 143));
 		gbc_Controls.gridx = 1;
 		gbc_Controls.insets = new Insets(5, 5, 5, 5);
-		panel_Controls.add(btn_Permeability, gbc_Controls);
+		sub4.add(btn_Permeability, gbc_Controls);
 		
 		
 		/*/////////////////////////////////////////////
 		 * Forecasts
 		 /////////////////////////////////////////////*/
-		gbc_Forecasts  = new GridBagConstraints();
+		//gbc_Forecasts  = new GridBagConstraints();
 		
 		lbl_Forecasts = new JLabel("Forecasts:");
 		lbl_Forecasts.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		gbc_Forecasts.anchor = GridBagConstraints.LINE_START;
-		gbc_Forecasts.gridx = 0;
-		gbc_Forecasts.gridy = 5;
-		gbc_Forecasts.insets = new Insets(5, 71, 5, 5);
-		panel_Controls.add(lbl_Forecasts, gbc_Forecasts);
+		gbc_Controls.anchor = GridBagConstraints.LINE_START;
+		gbc_Controls.gridx = 0;
+		gbc_Controls.gridy = 5;
+		gbc_Controls.insets = new Insets(5, 71, 5, 5);
+		sub5.add(lbl_Forecasts, gbc_Controls);
 		
 		// PPM button
 		btn_PPM = new JButton("PPM");
 		btn_PPM.setToolTipText("<html>Define how properties and<br/>compute the production<br/>potential model.<html>");
 		btn_PPM.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_PPM.setBackground(new Color(216, 191, 216));
-		gbc_Forecasts.fill = GridBagConstraints.BOTH;
-		gbc_Forecasts.anchor=GridBagConstraints.LINE_START;
-		gbc_Forecasts.gridx = 0;
-		gbc_Forecasts.gridy = 5;
-		gbc_Forecasts.insets = new Insets(5, 145, 5, 5);
-		panel_Controls.add(btn_PPM, gbc_Forecasts);
+		gbc_Controls.fill = GridBagConstraints.HORIZONTAL;
+		gbc_Controls.anchor=GridBagConstraints.LINE_START;
+		gbc_Controls.gridx = 0;
+		gbc_Controls.gridy = 5;
+		gbc_Controls.insets = new Insets(5, 145, 5, 5);
+		sub5.add(btn_PPM, gbc_Controls);
 		
 		btn_Forecasts = new JButton("Forecasts");
 		btn_Forecasts.setToolTipText("<html>Read slices of data from data<br/>volumes contained in a project<br/>and review in 2D window. This<br/>will include the PPM volumes<br/>which can also be accessed via<br/>the PPM Controls.<html>");
 		btn_Forecasts.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		gbc_Forecasts.fill = GridBagConstraints.BOTH;
-		gbc_Forecasts.anchor=GridBagConstraints.LINE_START;
+		gbc_Controls.fill = GridBagConstraints.HORIZONTAL;
+		gbc_Controls.anchor=GridBagConstraints.LINE_START;
 		btn_Forecasts.setBackground(new Color(230,230,250));
-		gbc_Forecasts.gridx = 1;
-		gbc_Forecasts.insets = new Insets(5, 5, 5, 5);
-		panel_Controls.add(btn_Forecasts, gbc_Forecasts);
+		gbc_Controls.gridx = 1;
+		gbc_Controls.insets = new Insets(5, 5, 5, 5);
+		sub5.add(btn_Forecasts, gbc_Controls);
 		
 		
 		/*-------------------------------------------------------------------------------------------------------------------------------
@@ -603,7 +651,7 @@ public class firefly2 {
 		//gbc_lblNewLabel.anchor=GridBagConstraints.FIRST_LINE_START;
 		//gbc_lblNewLabel.fill = GridBagConstraints.BOTH;
 		//c.anchor=GridBagConstraints.BASELINE;
-		c.fill= GridBagConstraints.BOTH;
+		c.fill= GridBagConstraints.HORIZONTAL;
 		c.weightx=0.5;
 		c.weighty=0.5;
 		c.gridheight=1;
@@ -680,18 +728,21 @@ public class firefly2 {
 	    		failed.getContentPane().setLayout(gridBagLayout3);
 	    		failed.getContentPane().setBackground(new Color(152,251,152));
 	    		failed.setVisible(true);
-	    		failed.setSize(500,150);
+	    		failed.setMinimumSize(new Dimension(500,150));
+	    		//failed.setPreferredSize(new Dimension(500,150));
+	    		//failed.setSize(500,150);
 	    		gbc2= new GridBagConstraints();
 	    		/*
 	    		 * lbl error
 	    		 */
-	    		lbl_Failed = new JLabel("<html><br/>Gateway established, but unable to access project.<br/><br/> Exception=An error occured while trying to connect to the Java server (127.0.0.1:25322)<br/><br/><html>");
+	    		lbl_Failed = new JLabel("<html><center><br>Gateway established, but unable to access project.<br><br>"+"<center> Exception=An error occured while trying to connect to the Java server (127.0.0.1:25322)<br/><br/><html>");
+	    		lbl_Failed.setFont(new Font("Times New Roman", Font.BOLD, 13));
 	    		gbc2.gridx=0;
 	    		gbc2.gridy=0; 
-	    		//gbc.weightx=0.5;
-	    		//gbc.weighty=0.5;
-	    		gbc2.anchor=GridBagConstraints.NORTHEAST;
-	    		lbl_Failed.setFont(new Font("Times New Roman", Font.BOLD, 13));
+	    		gbc2.weightx=0.5;
+	    		gbc2.weighty=0.5;
+	    		gbc2.anchor=GridBagConstraints.NORTH;
+	    		gbc2.anchor=GridBagConstraints.CENTER;
 	    		failed.add(lbl_Failed, gbc2);
 	    		/*okay button
 	    		 * 
@@ -700,8 +751,8 @@ public class firefly2 {
 	    		btn_Okay.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 	    		gbc2.gridx=0;
 	    		gbc2.gridy=1;
-	    		//gbc.weightx=0.5;
-	    		//gbc.weighty=0.5;
+	    		gbc2.weightx=0.5;
+	    		gbc2.weighty=0.5;
 	    		gbc2.anchor=GridBagConstraints.NORTH;
 	    		//gbc.insets= new Insets(0,0,1000,0);
 	    		failed.add(btn_Okay, gbc2);
@@ -755,7 +806,7 @@ public class firefly2 {
     		error.getContentPane().setLayout(gridBagLayout2);
     		error.getContentPane().setBackground(new Color(240,128,128));
     		error.setVisible(true);
-    		error.setSize(500,150);
+    		error.setMinimumSize(new Dimension(500,150));
     		gbc= new GridBagConstraints();
     		/*
     		 * lbl error
