@@ -113,7 +113,7 @@ public class firefly3 {
 	private static JLabel lbl_VolumeValue;
 	
 	/*
-	 * "Button functionality" and "Border for Controls" variables on line 640, NEAR the bottom
+	 * Methods near the bottom around line 750
 	 */
 	
 	
