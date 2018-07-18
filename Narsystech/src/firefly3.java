@@ -130,7 +130,7 @@ public class firefly3 {
 		mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 591};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 1.0, Double.MIN_VALUE};
 		mainframe.getContentPane().setLayout(gridBagLayout);
@@ -604,9 +604,10 @@ public class firefly3 {
 		c.gridwidth=5;
 		c.gridx = 0;
 		c.gridy = 3;
+		c.insets = new Insets(10,10,10,10);
 		mainframe.getContentPane().add(panel_Status,c);
-		GridBagConstraints gbc_Status = new GridBagConstraints();
 		
+		GridBagConstraints gbc_Status = new GridBagConstraints();
 		
 		/*
 		 * Status label
